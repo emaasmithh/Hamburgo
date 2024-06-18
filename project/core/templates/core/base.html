@@ -7,6 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Hamburgo Burgers</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'core/assets/favicon.ico' %}" />
         <!-- Bootstrap Icons-->
@@ -27,7 +28,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">Hacé tu pedido</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -45,7 +46,7 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 mb-5">Las mejores hamburguesas | El mejor lugar</p>
-                        <a class="btn btn-primary btn-xl" href="#about">Hacé tu pedido</a>
+                        <a class="btn btn-primary btn-xl" href="{% url 'producto:producto_list' %}">Hacé tu pedido</a>
                     </div>
                 </div>
             </div>
@@ -54,12 +55,8 @@
         <section class="page-section bg-primary" id="about">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">Dónde encontrarnos?</h2>
-                        <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">Nos encontramos en General Rodríguez y te esperamos para disfrutar de las hamburguesas más ricas. Para delivery o take away pedí por la web o por whats app.</p>
-                        <a class="btn btn-light btn-xl" href="#services">Hacé tu pedido</a>
-                    </div>
+                  {% block body %}                    
+                  {% endblock body %}  
                 </div>
             </div>
         </section>
