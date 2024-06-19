@@ -32,6 +32,24 @@
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        {% if user.is_authenticated %}  
+                        <li class="nav-item">
+                            <a class="nav-link text-bg-info">{{ user.username }}</a>
+                        </li>                  
+                        <li class="nav-item">
+                            <form action="{% url 'core:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-dark">Logout</button>
+                            </form>
+                        </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core:login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core:register' %}">Crear cuenta</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
