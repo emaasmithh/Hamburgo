@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Producto
+
 from django.urls import reverse_lazy
+
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -13,3 +15,4 @@ def index(request):
 
 class ProductoList(ListView):
     model = Producto
+

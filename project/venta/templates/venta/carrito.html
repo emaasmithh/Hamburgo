@@ -1,0 +1,47 @@
+<h2 style="text-align: center;">CARRITO</h1>
+    
+    <table style="width: 80%; margin: auto; border-collapse: collapse; border: 1px solid #ddd;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Descripción</th>                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se deben incluir los elementos del carrito -->
+            {% if request.session.carrito.items %}
+            {% for key, value in request.session.carrito.items  %}
+            <tr>
+                <td>{{ value.nombre }}</td>
+                <td>${{ value.precio }}</td>
+                <td>{{ value.cantidad }}</td>
+                <td>{{ value.descripcion }}
+                    <a href="{% url 'agregar' value.producto_id %}">+</a>
+                    <a href="{% url 'eliminar' value.producto_id %}">-</a>
+                </td> 
+
+                
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td>
+                    <div>Sin productos</div>
+                </td>
+            </tr>
+                
+            {% endif %}  
+            <tr>
+                <th>Total:</th>
+                <td>$   {{ total_carrito }}</td>
+            </tr>          
+            
+        </tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">        
+        <div><a href="">Limpiar</a></div>
+        <div><a href="">Guardar</a></div>
+    </div>
