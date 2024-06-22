@@ -15,11 +15,11 @@
             {% for key, value in request.session.carrito.items  %}
             <tr>
                 <td>{{ value.nombre }}</td>
-                <td>${{ value.precio }}</td>
+                <td>${{ value.acumulado }}</td>
                 <td>{{ value.cantidad }}</td>
                 <td>{{ value.descripcion }}
-                    <a href="{% url 'agregar' value.producto_id %}">+</a>
-                    <a href="{% url 'eliminar' value.producto_id %}">-</a>
+                    <a href="{% url 'venta:agregar' value.producto_id %}">+</a>
+                    <a href="{% url 'venta:restar' value.producto_id %}">-</a>
                 </td> 
 
                 
@@ -42,6 +42,6 @@
     </table>
 
     <div style="text-align: center; margin-top: 20px;">        
-        <div><a href="">Limpiar</a></div>
+        <div><a href="{% url 'venta:limpiar' %}">Limpiar</a></div>
         <div><a href="">Guardar</a></div>
     </div>

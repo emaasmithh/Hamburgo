@@ -53,8 +53,9 @@ class Carrito():
             self.carrito[id] = {
                 "producto_id": producto.id,
                 "nombre": producto.nombre,
-                "acumulado": producto.precio,
+                "acumulado": float(producto.precio),
                 "cantidad": 1,
+                "descripcion": producto.descripcion,
             }
         else:
             self.carrito[id]["cantidad"] += 1

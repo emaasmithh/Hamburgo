@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Producto
+from venta.models import Carrito
 
 from django.urls import reverse_lazy
 
@@ -15,4 +16,10 @@ def index(request):
 
 class ProductoList(ListView):
     model = Producto
+
+def agregar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=producto_id)
+    carrito.agregar(producto)
+    return redirect("producto:producto_list")
 
