@@ -23,3 +23,4 @@ def agregar_producto(request, producto_id):
     carrito.agregar(producto)
     return redirect("producto:producto_list")
 
+
