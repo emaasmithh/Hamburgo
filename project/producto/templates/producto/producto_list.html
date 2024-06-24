@@ -1,6 +1,37 @@
 {% extends 'core/base.html' %}
 
 {% block body %}
+<div class="container text-center pt-5">
+    <h1 class="display-4">BURGERS</h1>
+    
+    <div class="row align-items-stretch">
+        {% for object in object_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100"> <!-- Agregamos la clase h-100 para hacer que la tarjeta tenga altura completa -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ object.nombre }}</h5>
+                    <p class="card-text">{{ object.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ object.precio }}</p>                    
+                    {% for ingrediente in object.ingrediente.all  %}
+                    <p class="card-text">{{ ingrediente.nombre }}</p>
+                    {% endfor %}                    
+                    <a href="{% url 'producto:agregar_producto' object.id %}" class="btn btn-primary">Agregar al carrito</a>                                        
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'venta/carrito.html' %}
+{% endblock body %}
+
+
+
+
+
+
+
+
 
 <div class="container text-center pt-5"> <!-- Añadido 'text-center' para centrar el texto -->
     <h1 class="display-4">BURGERS</h1> <!-- Añadida clase 'display-4' para un tamaño grande -->
@@ -12,7 +43,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ object.nombre }}</h5>
                     <p class="card-text">{{ object.descripcion }}</p>
-                    <p class="card-text">Precio: ${{ object.precio }}</p>
+                    <p class="card-text">Precio: ${{ object.precio }}</p>                    
+                    {% for ingrediente in object.ingrediente.all  %}
+                    <p class="card-text">{{ ingrediente.nombre }}</p>
+                    {% endfor %}                    
                     <a href="{% url 'producto:agregar_producto' object.id %}" class="btn btn-primary">Agregar al carrito</a>                                        
                 </div>
             </div>
@@ -20,7 +54,5 @@
         {% endfor %}
     </div>
 </div>
-{% include 'venta/carrito.html' %}
 
-{% endblock body %}
 

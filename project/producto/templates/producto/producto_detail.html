@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+<ul>   
+    <li>{{ object.nombre }}</li>
+    <li>{{ object.descripcion }}</li>
+    <li>{{ object.precio }}</li>
+    <li>{{ object.cantidad }}</li>
+    {% for ingrediente in object.ingrediente.all  %}
+        <li>{{ ingrediente.nombre }}</li> 
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="ingrediente_id" value="{{ relacion.ingrediente.id }}">
+            <button type="submit">Quitar</button>
+        </form>       
+    {% endfor %}
+</ul>
+<div>
+    <a href="{% url 'producto:producto_list' %}">Volver</a>
+</div>
+
+{% include 'venta/carrito.html' %} 
+{% endblock body %}
+
+<ul>
+    {% for relacion in hamburguesa.ingredientes.all %}
+        <li>{{ relacion.ingrediente.nombre }}
+            
+        </li>
+    {% endfor %}
+    </ul>
