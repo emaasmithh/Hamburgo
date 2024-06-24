@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Producto
+from .models import Producto, Ingrediente, ProductoIngrediente
 
 class ProductoAdmin(admin.ModelAdmin):
     list_display = (        
@@ -16,3 +16,6 @@ class ProductoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Producto, ProductoAdmin)
+admin.site.register(Ingrediente)
+admin.site.register(ProductoIngrediente)
+
