@@ -13,19 +13,19 @@ class ProductoList(ListView):
 
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
-    producto = Producto.objects.get(id=producto_id)
+    producto = ProductoIngrediente.objects.get(id=producto_id)
     carrito.agregar(producto)
     return redirect("venta:index")
 
 def eliminar_producto(request, producto_id):
     carrito = Carrito(request)
-    producto = Producto.objects.get(id=producto_id)
+    producto = ProductoIngrediente.objects.get(id=producto_id)
     carrito.eliminar(producto)
     return redirect("venta:index")
 
 def restar_producto(request, producto_id):
     carrito = Carrito(request)
-    producto = Producto.objects.get(id=producto_id)
+    producto = ProductoIngrediente.objects.get(id=producto_id)
     carrito.restar(producto)
     return redirect("venta:index")
 

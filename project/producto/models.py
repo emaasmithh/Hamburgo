@@ -11,8 +11,7 @@ class Ingrediente(models.Model):
     
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
-    descripcion = models.TextField()
-    ingrediente = models.ManyToManyField(Ingrediente, blank=True)
+    descripcion = models.TextField()    
     precio = models.FloatField()
     cantidad = models.FloatField()
     imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
@@ -20,13 +19,18 @@ class Producto(models.Model):
     
     def __str__(self):
         return self.nombre
+    
+    def aumentar_precio(self, precio_extra):
+        self.precio += precio_extra
+        self.save()
    
 
     
 class ProductoIngrediente(models.Model):    
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    ingrediente = models.ManyToManyField(Ingrediente)
+    producto = models.ForeignKey(Producto, on_delete=models.PROTECT)
+    ingrediente = models.ManyToManyField(Ingrediente, blank=True)
 
     def __str__(self):
         return self.producto.nombre
+    
 

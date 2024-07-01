@@ -2,7 +2,7 @@ from django import forms
 
 from . import models
 
-class ProductoForm(forms.ModelForm):
+class ProductoIngredienteForm(forms.ModelForm):
     class Meta:
-        model = models.Producto
+        model = models.ProductoIngrediente
         fields = ["ingrediente"]

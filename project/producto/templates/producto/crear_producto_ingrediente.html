@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+<h1>{{ producto_base.nombre }}</h1>
+<ul>{{ producto_base.descripcion }}</ul>
+<ul>{{ producto_base.precio }}</ul>
+    
+    <form action="{% url 'producto:crear_producto_ingrediente' producto_base.id %}" method="post">
+        {% csrf_token %}
+        
+        <h2>Desea agregar algún extra?</h2>
+        
+        {% for ingrediente in ingredientes_disponibles %}
+            <input type="checkbox" name="ingredientes" value="{{ ingrediente.id }}"> {{ ingrediente.nombre }} - (${{ ingrediente.precio_extra }})<br>
+        {% endfor %}
+  
+        <br>
+        <button type="submit">Agregar</button>
+    </form>   
+
+    <div class="container">
+        <h2 class="text-center mb-4">CARRITO</h2>
+    
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Ingredientes extras</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se deben incluir los elementos del carrito -->
+                    {% if request.session.carrito.items %}
+                        {% for key, value in request.session.carrito.items %}
+                            <tr>
+                                <td>{{ value.nombre }}</td>
+                                <td>${{ value.acumulado }}</td>
+                                <td>{{ value.cantidad }}</td>
+                                <td>{{ value.descripcion }}
+                                    <div class="acciones">
+                                        <a href="{% url 'venta:agregar' value.producto_id %}" class="btn btn-sm btn-primary">+</a>
+                                        <a href="{% url 'venta:restar' value.producto_id %}" class="btn btn-sm btn-danger">-</a>
+                                    </div>
+                                </td>
+                                <td>{{ object.producto }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center">Sin productos</td>
+                        </tr>
+                    {% endif %}
+    
+                    <tr>
+                        <th class="text-right" colspan="3">Total:</th>
+                        <td><strong>${{ total_carrito }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="text-center mt-4">
+            <div><a href="{% url 'venta:limpiar' %}" class="btn btn-secondary">Limpiar</a></div>
+            <div><a href="#" class="btn btn-primary">Guardar</a></div>
+        </div>
+    </div>
+{% endblock body %}
+

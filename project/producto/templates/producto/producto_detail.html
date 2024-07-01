@@ -6,26 +6,21 @@
     <li>{{ object.descripcion }}</li>
     <li>{{ object.precio }}</li>
     <li>{{ object.cantidad }}</li>
-    {% for ingrediente in object.ingrediente.all  %}
-        <li>{{ ingrediente.nombre }}</li> 
-        <form method="post">
-            {% csrf_token %}
-            <input type="hidden" name="ingrediente_id" value="{{ relacion.ingrediente.id }}">
-            <button type="submit">Quitar</button>
-        </form>       
-    {% endfor %}
-</ul>
-<div>
-    <a href="{% url 'producto:producto_list' %}">Volver</a>
-</div>
+</ul> 
+<h1>Agregar Ingredientes a {{ producto_base.nombre }}</h1>
+    
+    <form action="{% url 'producto:crear_producto_ingrediente' producto_base.id %}" method="post">
+        {% csrf_token %}
+        
+        <h2>Selecciona los ingredientes adicionales:</h2>
+        
+        {% for ingrediente in ingredientes_disponibles %}
+            <input type="checkbox" name="ingredientes" value="{{ ingrediente.id }}"> {{ ingrediente.nombre }} <br>
+        {% endfor %}
+  
+        <br>
+        <button type="submit">Agregar Ingredientes</button>
+    </form>
 
 {% include 'venta/carrito.html' %} 
 {% endblock body %}
-
-<ul>
-    {% for relacion in hamburguesa.ingredientes.all %}
-        <li>{{ relacion.ingrediente.nombre }}
-            
-        </li>
-    {% endfor %}
-    </ul>

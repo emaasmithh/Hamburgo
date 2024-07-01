@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 from django.forms import ValidationError
 from django.utils import timezone
-from producto.models import Producto
+from producto.models import Producto, ProductoIngrediente, Ingrediente
 class Cliente(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cliente")
     celular = models.CharField(max_length=20)
@@ -52,14 +52,15 @@ class Carrito():
         if id not in self.carrito.keys():
             self.carrito[id] = {
                 "producto_id": producto.id,
-                "nombre": producto.nombre,
-                "acumulado": float(producto.precio),
+                "nombre": producto.producto.nombre,
+                "acumulado": float(producto.producto.precio),
                 "cantidad": 1,
-                "descripcion": producto.descripcion,
-            }
+                "descripcion": producto.producto.descripcion,                                         
+            }            
         else:
             self.carrito[id]["cantidad"] += 1
-            self.carrito[id]["acumulado"] += producto.precio  
+            self.carrito[id]["acumulado"] += producto.producto.precio
+             
 
         self.guardar_carrito()
 
@@ -77,7 +78,7 @@ class Carrito():
         id = str(producto.id)
         if id in self.carrito.keys():
             self.carrito[id]["cantidad"] -= 1
-            self.carrito[id]["acumulado"] -= producto.precio
+            self.carrito[id]["acumulado"] -= producto.producto.precio
             if self.carrito[id]["cantidad"] <= 0:
                 self.eliminar(producto)
             self.guardar_carrito()
