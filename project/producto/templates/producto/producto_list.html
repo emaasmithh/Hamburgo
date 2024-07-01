@@ -9,9 +9,14 @@
         <div class="col-md-4 mb-4">
             <div class="card h-100"> <!-- Agregamos la clase h-100 para hacer que la tarjeta tenga altura completa -->
                 <div class="card-body">
+                    {% if object.imagen %}
+        <img src="{{ object.imagen.url }}" alt="Imagen de {{ object.nombre }}">
+    {% else %}
+        <p>No hay imagen disponible para este producto.</p>
+    {% endif %}
                     <h5 class="card-title">{{ object.nombre }}</h5>
                     <p class="card-text">{{ object.descripcion }}</p>
-                    <p class="card-text">Precio: ${{ object.precio }}</p>
+                    <p class="card-text">Precio: ${{ object.precio }}</p>                    
                     <a href="{% url 'producto:crear_producto_ingrediente' object.id %}">agregar</a>           
                 </div>
             </div>

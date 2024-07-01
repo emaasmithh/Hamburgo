@@ -9,30 +9,7 @@ class Cliente(models.Model):
     direccion = models.CharField(max_length=255)
 
     def __str__(self) -> str:
-        return self.usuario.username
-    
-class ElementoCarrito(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    cantidad = models.PositiveIntegerField(default=1)
-    creado = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return f"{self.cantidad} x {self.producto.nombre} para {self.cliente.usuario.username}"
-    
-    def agregar_carrito(self):
-        pass
-    
-class Orden(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    elementos = models.ManyToManyField(ElementoCarrito)
-    creado = models.DateTimeField(auto_now_add=True)
-    actualizado = models.DateTimeField(auto_now=True)
-    completado = models.BooleanField(default=False)
-    numero_orden = models.CharField(max_length=20, null=True)
-    
-    def __str__(self):
-        return f"Orden #{self.numero_orden} de {self.cliente.usuario.username}"
+        return self.usuario.username   
     
 
 class Carrito():

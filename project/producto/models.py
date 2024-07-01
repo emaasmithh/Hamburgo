@@ -19,18 +19,23 @@ class Producto(models.Model):
     
     def __str__(self):
         return self.nombre
-    
-    def aumentar_precio(self, precio_extra):
-        self.precio += precio_extra
-        self.save()
+       
    
-
-    
 class ProductoIngrediente(models.Model):    
-    producto = models.ForeignKey(Producto, on_delete=models.PROTECT)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     ingrediente = models.ManyToManyField(Ingrediente, blank=True)
 
     def __str__(self):
         return self.producto.nombre
+    
+    def aumentar_precio(self, precio_extra):
+        self.producto.precio += precio_extra
+        self.save()
+
+    def agregar_descripcion(self, descripcion):
+        self.producto.descripcion += f" (extra {descripcion})"
+        self.save()
+
+    
     
 

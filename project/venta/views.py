@@ -10,11 +10,10 @@ def index(request):
 class ProductoList(ListView):
     model = Producto
 
-
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = ProductoIngrediente.objects.get(id=producto_id)
-    carrito.agregar(producto)
+    carrito.agregar(producto)    
     return redirect("venta:index")
 
 def eliminar_producto(request, producto_id):

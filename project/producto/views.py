@@ -57,7 +57,9 @@ def crear_producto_ingrediente(request, producto_id):
             ingrediente = Ingrediente.objects.get(pk=ingrediente_id)
             producto_ingrediente.ingrediente.add(ingrediente)
             if ingrediente:
-                producto_ingrediente.producto.aumentar_precio(ingrediente.precio_extra)
+                producto_ingrediente.agregar_descripcion(ingrediente.nombre)
+                producto_ingrediente.aumentar_precio(ingrediente.precio_extra)
+           
         
         producto_ingrediente.save()
 
@@ -74,7 +76,7 @@ def crear_producto_ingrediente(request, producto_id):
         'producto_base': producto_base,
         'ingredientes_disponibles': ingredientes_disponibles,
     }
-    return render(request, 'producto/producto_list.html', context)
+    return render(request, 'producto/crear_producto_ingrediente.html', context)
 
 class ProductoIngredienteDetail(DetailView):
     model = ProductoIngrediente

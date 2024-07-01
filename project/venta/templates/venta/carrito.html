@@ -8,8 +8,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Ingredientes extras</th>
+                    <th scope="col">Descripción</th>                    
                 </tr>
             </thead>
             <tbody>
@@ -21,13 +20,10 @@
                             <td>${{ value.acumulado }}</td>
                             <td>{{ value.cantidad }}</td>
                             <td>{{ value.descripcion }}
-                                <div class="acciones">
-                                    <a href="{% url 'venta:agregar' value.producto_id %}" class="btn btn-sm btn-primary">+</a>
+                                <div class="acciones">                                    
                                     <a href="{% url 'venta:restar' value.producto_id %}" class="btn btn-sm btn-danger">-</a>
                                 </div>
-                            </td>
-                            <td>{{ object.producto.nombre }}</td>
-                        </tr>
+                            </td>                            
                     {% endfor %}
                 {% else %}
                     <tr>
