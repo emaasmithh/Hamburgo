@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+<ul>   
+    <li>{{ object.nombre }}</li>
+    <li>{{ object.descripcion }}</li>
+    <li>{{ object.precio }}</li>
+    <li>{{ object.cantidad }}</li>
+</ul> 
+<a href="{% url 'producto:agregar_otro_producto' object.id %}">Agregar al carrito</a>
+
+
+{% include 'venta/carrito.html' %} 
+{% endblock body %}

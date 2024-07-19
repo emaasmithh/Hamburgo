@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto, ProductoIngrediente, Ingrediente
+from .models import Producto, ProductoIngrediente, Ingrediente, OtroProducto, Entrada, Bebida, OtroProducto2, Entrada2
 from .forms import ProductoIngredienteForm
 from venta.models import Carrito
 
@@ -16,7 +16,7 @@ def index(request):
     return render(request, "producto/index.html")
 
 class ProductoList(ListView):
-    model = Producto
+   model = Producto
 
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
@@ -81,4 +81,50 @@ def crear_producto_ingrediente(request, producto_id):
 class ProductoIngredienteDetail(DetailView):
     model = ProductoIngrediente
     template_name = "venta/carrito.html"
+
+
+def producto_list(request):
+    hamburguesas = Producto.objects.all()
+    otros_productos = OtroProducto.objects.all()
+    entradas = Entrada.objects.all()
+    bebidas = Bebida.objects.all()
+
+    context = {
+        "hamburguesas": hamburguesas,
+        "otros_productos": otros_productos,
+        "entradas": entradas,
+        "bebidas": bebidas,
+    }
+
+    return render(request, "producto/producto_list.html", context)
+
+def agregar_otro_producto(request, otro_producto_id):    
+    carrito = Carrito(request)
+    otro_producto = OtroProducto.objects.get(id=otro_producto_id)
+    carrito.agregar(otro_producto)    
+    return redirect("producto:producto_list")
+
+class OtroProductoDetail(DetailView):
+    model = OtroProducto
+    template_name = "producto/otro_producto_detail.html"
+
+def crear_otro_producto_2(request, producto_id):
+    producto_base = get_object_or_404(OtroProducto, pk=producto_id)
+
+    if request.method == "POST":
+        if "confirmar_agregar" in request.POST:       
+            otro_producto_2 = OtroProducto2.objects.create(producto=producto_base)            
+    
+            otro_producto_2.save()
+
+            carrito = Carrito(request)
+            carrito.agregar(otro_producto_2)       
+        
+            return redirect("producto:producto_list")
+    
+    context = {
+        'producto_base': producto_base,        
+    }
+    return render(request, 'producto/crear_otro_producto_2.html', context)
+
 

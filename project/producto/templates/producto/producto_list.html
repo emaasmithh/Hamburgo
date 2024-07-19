@@ -5,19 +5,88 @@
     <h1 class="display-4">BURGERS</h1>
     
     <div class="row align-items-stretch">
-        {% for object in object_list %}
+        {% for hamburguesa in hamburguesas %}
         <div class="col-md-4 mb-4">
             <div class="card h-100"> <!-- Agregamos la clase h-100 para hacer que la tarjeta tenga altura completa -->
                 <div class="card-body">
-                    {% if object.imagen %}
-        <img src="{{ object.imagen.url }}" alt="Imagen de {{ object.nombre }}">
+                    {% if hamburguesa.imagen %}
+        <img src="{{ hamburguesa.imagen.url }}" alt="Imagen de {{ hamburguesa.nombre }}">
     {% else %}
         <p>No hay imagen disponible para este producto.</p>
     {% endif %}
-                    <h5 class="card-title">{{ object.nombre }}</h5>
-                    <p class="card-text">{{ object.descripcion }}</p>
-                    <p class="card-text">Precio: ${{ object.precio }}</p>                    
-                    <a href="{% url 'producto:crear_producto_ingrediente' object.id %}">agregar</a>           
+                    <h5 class="card-title">{{ hamburguesa.nombre }}</h5>
+                    <p class="card-text">{{ hamburguesa.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ hamburguesa.precio }}</p>                    
+                    <a href="{% url 'producto:crear_producto_ingrediente' hamburguesa.id %}">agregar</a>           
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container text-center pt-5">
+    <h1 class="display-4">OTROS</h1>
+    
+    <div class="row align-items-stretch">
+        {% for otro in otros_productos %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100"> <!-- Agregamos la clase h-100 para hacer que la tarjeta tenga altura completa -->
+                <div class="card-body">
+                    {% if otro.imagen %}
+        <img src="{{ otro.imagen.url }}" alt="Imagen de {{ otro.nombre }}">
+    {% else %}
+        <p>No hay imagen disponible para este producto.</p>
+    {% endif %}
+                    <h5 class="card-title">{{ otro.nombre }}</h5>
+                    <p class="card-text">{{ otro.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ otro.precio }}</p>                    
+                    <a href="{% url 'producto:crear_otro_producto_2' otro.id %}">agregar</a>           
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container text-center pt-5">
+    <h1 class="display-4">ENTRADAS</h1>
+    
+    <div class="row align-items-stretch">
+        {% for entrada in entradas %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100"> <!-- Agregamos la clase h-100 para hacer que la tarjeta tenga altura completa -->
+                <div class="card-body">
+                    {% if entrada.imagen %}
+        <img src="{{ entrada.imagen.url }}" alt="Imagen de {{ entrada.nombre }}">
+    {% else %}
+        <p>No hay imagen disponible para este producto.</p>
+    {% endif %}
+                    <h5 class="card-title">{{ entrada.nombre }}</h5>
+                    <p class="card-text">{{ entrada.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ entrada.precio }}</p>                    
+                    <a href="{% url 'producto:crear_producto_ingrediente' entrada.id %}">agregar</a>           
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container text-center pt-5">
+    <h1 class="display-4">BEBIDAS</h1>
+    
+    <div class="row align-items-stretch">
+        {% for bebida in bebidas %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100"> <!-- Agregamos la clase h-100 para hacer que la tarjeta tenga altura completa -->
+                <div class="card-body">
+                    {% if bebida.imagen %}
+        <img src="{{ bebida.imagen.url }}" alt="Imagen de {{ bebida.nombre }}">
+    {% else %}
+        <p>No hay imagen disponible para este producto.</p>
+    {% endif %}
+                    <h5 class="card-title">{{ bebida.nombre }}</h5>
+                    <p class="card-text">{{ bebida.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ bebida.precio }}</p>                    
+                    <a href="{% url 'producto:crear_producto_ingrediente' bebida.id %}">agregar</a>           
                 </div>
             </div>
         </div>
