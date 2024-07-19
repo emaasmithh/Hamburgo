@@ -36,6 +36,30 @@ class ProductoIngrediente(models.Model):
         self.producto.descripcion += f" (extra {descripcion})"
         self.save()
 
+class OtroProducto(models.Model):
+    nombre = models.CharField(max_length=255)
+    descripcion = models.TextField()    
+    precio = models.FloatField()
+    cantidad = models.FloatField()
+    imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
+    fecha_actualizacion = models.DateField(null=True, blank=True, editable=False, default=timezone.now)
+    
+    def __str__(self):
+        return self.nombre
+    
+class Entrada(models.Model):
+    nombre = models.CharField(max_length=255)
+    descripcion = models.TextField()    
+    precio = models.FloatField()
+    cantidad = models.FloatField()
+    imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
+    fecha_actualizacion = models.DateField(null=True, blank=True, editable=False, default=timezone.now)
+    
+    def __str__(self):
+        return self.nombre
+
+    
+
     
     
 
