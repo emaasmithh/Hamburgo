@@ -63,7 +63,7 @@
                     <h5 class="card-title">{{ entrada.nombre }}</h5>
                     <p class="card-text">{{ entrada.descripcion }}</p>
                     <p class="card-text">Precio: ${{ entrada.precio }}</p>                    
-                    <a href="{% url 'producto:crear_producto_ingrediente' entrada.id %}">agregar</a>           
+                    <a href="{% url 'producto:crear_entrada_2' entrada.id %}">agregar</a>           
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
                     <h5 class="card-title">{{ bebida.nombre }}</h5>
                     <p class="card-text">{{ bebida.descripcion }}</p>
                     <p class="card-text">Precio: ${{ bebida.precio }}</p>                    
-                    <a href="{% url 'producto:crear_producto_ingrediente' bebida.id %}">agregar</a>           
+                    <a href="{% url 'producto:crear_bebida_2' bebida.id %}">agregar</a>           
                 </div>
             </div>
         </div>

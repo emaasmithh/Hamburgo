@@ -60,6 +60,7 @@ class Entrada(models.Model):
     
 class Bebida(models.Model):     
     nombre = models.CharField(max_length=255)
+    descripcion = models.TextField(blank=True, null=True)
     precio = models.FloatField()
     cantidad = models.FloatField()
     imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
@@ -95,6 +96,21 @@ class Entrada2(models.Model):
     def agregar_descripcion(self, descripcion):
         self.producto.descripcion += f" (extra {descripcion})"
         self.save()
+
+class Bebida2(models.Model):
+    producto = models.ForeignKey(Bebida, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.producto.nombre
+    
+    def aumentar_precio(self, precio_extra):
+        self.producto.precio += precio_extra
+        self.save()
+
+    def agregar_descripcion(self, descripcion):
+        self.producto.descripcion += f" (extra {descripcion})"
+        self.save()
+
 
 
 

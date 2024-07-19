@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto, ProductoIngrediente, Ingrediente, OtroProducto, Entrada, Bebida, OtroProducto2, Entrada2
+from .models import Producto, ProductoIngrediente, Ingrediente, OtroProducto, Entrada, Bebida, OtroProducto2, Entrada2, Bebida2
 from .forms import ProductoIngredienteForm
 from venta.models import Carrito
 
@@ -126,5 +126,43 @@ def crear_otro_producto_2(request, producto_id):
         'producto_base': producto_base,        
     }
     return render(request, 'producto/crear_otro_producto_2.html', context)
+
+def crear_entrada_2(request, producto_id):
+    producto_base = get_object_or_404(Entrada, pk=producto_id)
+
+    if request.method == "POST":
+        if "confirmar_agregar" in request.POST:       
+            entrada_2 = Entrada2.objects.create(producto=producto_base)            
+    
+            entrada_2.save()
+
+            carrito = Carrito(request)
+            carrito.agregar(entrada_2)       
+        
+            return redirect("producto:producto_list")
+    
+    context = {
+        'producto_base': producto_base,        
+    }
+    return render(request, 'producto/crear_entrada_2.html', context)
+
+def crear_bebida_2(request, producto_id):
+    producto_base = get_object_or_404(Bebida, pk=producto_id)
+
+    if request.method == "POST":
+        if "confirmar_agregar" in request.POST:       
+            bebida_2 = Bebida2.objects.create(producto=producto_base)            
+    
+            bebida_2.save()
+
+            carrito = Carrito(request)
+            carrito.agregar(bebida_2)       
+        
+            return redirect("producto:producto_list")
+    
+    context = {
+        'producto_base': producto_base,        
+    }
+    return render(request, 'producto/crear_bebida_2.html', context)
 
 
