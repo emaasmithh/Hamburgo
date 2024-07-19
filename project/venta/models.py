@@ -1,15 +1,46 @@
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.forms import ValidationError
 from django.utils import timezone
 from producto.models import Producto, ProductoIngrediente, Ingrediente
+class UserManager(BaseUserManager):
+    def create_user(self, email, nombre, password=None):
+        if not email:
+            raise ValueError('El email es obligatorio')
+        email = self.normalize_email(email)
+        user = self.model(email=email, nombre=nombre)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, nombre, password):
+        user = self.create_user(email=email, nombre=nombre, password=password)
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
+
+class Usuario(AbstractBaseUser):
+    email = models.EmailField(unique=True)
+    nombre = models.CharField(max_length=100)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['nombre']
+
+    def __str__(self):
+        return self.email
+
 class Cliente(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cliente")
+    usuario = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="cliente")
     celular = models.CharField(max_length=20)
     direccion = models.CharField(max_length=255)
+    
 
     def __str__(self) -> str:
-        return self.usuario.username   
+        return self.usuario.username  
+       
     
 
 class Carrito():
@@ -23,7 +54,6 @@ class Carrito():
 
         else:
             self.carrito = carrito
-
     def agregar(self, producto):
         id = str(producto.id)
         if id not in self.carrito.keys():
@@ -59,13 +89,6 @@ class Carrito():
             if self.carrito[id]["cantidad"] <= 0:
                 self.eliminar(producto)
             self.guardar_carrito()
-
     def limpiar(self):
         self.session["carrito"] = {}
-        self.session.modified = True
-
-
-  
-
-
-
+        self.session.modified = True 

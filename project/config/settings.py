@@ -66,7 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'venta.context_processor.total_carrito'
+                #'venta.context_processor.total_carrito'
             ],
         },
     },
@@ -130,3 +130,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = reverse_lazy("core:login")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
