@@ -8,7 +8,9 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Descripción</th>                    
+                    <th scope="col">Descripción</th>  
+                    <th scope="col">Comentarios</th> 
+
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +25,8 @@
                                 <div class="acciones">                                    
                                     <a href="{% url 'venta:restar' value.producto_id %}" class="btn btn-sm btn-danger">-</a>
                                 </div>
-                            </td>                            
+                            </td> 
+                            <td>dassadads</td>                           
                     {% endfor %}
                 {% else %}
                     <tr>
@@ -41,6 +44,6 @@
 
     <div class="text-center mt-4">
         <div><a href="{% url 'venta:limpiar' %}" class="btn btn-secondary">Limpiar</a></div>
-        <div><a href="#" class="btn btn-primary">Continuar</a></div>
+        <div><a href="{% url 'venta:compra' %}" class="btn btn-primary">Continuar</a></div>
     </div>
 </div>

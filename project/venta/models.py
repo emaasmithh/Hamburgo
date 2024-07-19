@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, User
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.forms import ValidationError
@@ -62,7 +62,7 @@ class Carrito():
                 "nombre": producto.producto.nombre,
                 "acumulado": float(producto.producto.precio),
                 "cantidad": 1,
-                "descripcion": producto.producto.descripcion,                                         
+                "descripcion": producto.producto.descripcion,                                                        
             }            
         else:
             self.carrito[id]["cantidad"] += 1
@@ -92,3 +92,14 @@ class Carrito():
     def limpiar(self):
         self.session["carrito"] = {}
         self.session.modified = True 
+
+
+class OrdenCompra(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # Relación con el usuario que realizó la compra
+    metodo_pago = models.CharField(max_length=50)
+    direccion_entrega = models.TextField(blank=True)
+    comentarios = models.TextField(blank=True)
+    fecha_compra = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Orden de compra {self.pk} - Usuario: {self.usuario.nombre}'

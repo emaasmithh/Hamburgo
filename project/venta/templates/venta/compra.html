@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+
+<p>Método de pago</p>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="id_metodo_pago">Método de Pago:</label>
+    {{ form.metodo_pago }}
+    
+    <br><br>
+    <label for="id_direccion_entrega">Dirección de Entrega:</label>
+    {{ form.direccion_entrega }}
+        
+    <br><br>
+    <label for="id_comentarios">Comentarios:</label>
+    {{ form.comentarios }}
+        
+    <br><br>
+    <!-- Otros campos como dirección de entrega y comentario aquí -->
+
+    <input type="submit" value="Comprar">
+</form>
+
+<H1>DETALLE DE TU PEDIDO</H1>
+
+    {% include 'venta/carrito.html' %}
+
+{% endblock body %}
