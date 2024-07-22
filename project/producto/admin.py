@@ -21,3 +21,4 @@ admin.site.register(ProductoIngrediente)
 admin.site.register(OtroProducto)
 admin.site.register(Entrada)
 admin.site.register(Bebida)
+

@@ -131,3 +131,11 @@ LOGIN_URL = reverse_lazy("core:login")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-mail.outlook.com'  # Reemplaza con el servidor SMTP que estás usando
+EMAIL_PORT = 587  # Puerto del servidor SMTP (usualmente 587 o 465)
+EMAIL_USE_TLS = True  # True si tu servidor requiere TLS, False si no
+EMAIL_HOST_USER = 'emaasmithh@hotmail.com'  # Dirección de correo electrónico desde la que enviarás los correos
+EMAIL_HOST_PASSWORD = 'emaS2024'  # Contraseña de tu cuenta de correo electrónico
+DEFAULT_FROM_EMAIL = 'emaasmithh@hotmail.com'  # Dirección de correo que se mostrará como remitente por defecto
+

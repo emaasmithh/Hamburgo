@@ -1,5 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block body %}
-    <h1>Desea confirmar la compra?</h1>
+    <h1>La compra se realizó exitosamente!</h1>
+    <a href="{% url 'producto:producto_list' %}">VOLVER A MENÚ PRINCIPAL</a>
+    {{ metodo_pago }}
 {% endblock body %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cliente
+from .models import Cliente, OrdenCompra
 
 class ClienteAdmin(admin.ModelAdmin):
     list_display = (
@@ -12,3 +12,4 @@ class ClienteAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Cliente, ClienteAdmin)
+admin.site.register(OrdenCompra)

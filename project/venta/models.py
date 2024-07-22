@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.forms import ValidationError
 from django.utils import timezone
+
 from producto.models import Producto, ProductoIngrediente, Ingrediente
 class UserManager(BaseUserManager):
     def create_user(self, email, nombre, password=None):
@@ -93,13 +94,25 @@ class Carrito():
         self.session["carrito"] = {}
         self.session.modified = True 
 
+    def obtener_detalle_pedido(self):
+        detalle_pedido = []
+        for item_id, item_info in self.carrito.items():
+            detalle_pedido.append({
+                'nombre': item_info['nombre'],                
+                'descripcion': item_info['descripcion'],
+                'cantidad': item_info['cantidad']
+            })
+        return detalle_pedido
+
 
 class OrdenCompra(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # Relación con el usuario que realizó la compra
+    precio_total = models.FloatField(null=True, blank=True)
     metodo_pago = models.CharField(max_length=50)
     direccion_entrega = models.TextField(blank=True)
     comentarios = models.TextField(blank=True)
     fecha_compra = models.DateTimeField(auto_now_add=True)
+    detalles_pedido = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f'Orden de compra {self.pk} - Usuario: {self.usuario.nombre}'
+        return f'Orden de compra {self.pk} - Usuario: {self.usuario.username}'

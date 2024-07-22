@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, ProductoList, agregar_producto, eliminar_producto, limpiar_carrito, restar_producto, ver_carrito, comprar, confirmacion_compra
+from .views import index, ProductoList, agregar_producto, eliminar_producto, limpiar_carrito, restar_producto, ver_carrito, comprar, confirmar_pedido
 
 
 app_name = "venta"
@@ -12,5 +12,5 @@ urlpatterns = [
     path("limpiar_carrito/", limpiar_carrito, name="limpiar"),     
     path("ver_carrito/", ver_carrito, name="ver_carrito"),
     path("compra/", comprar, name="compra"),
-    path("confirmacion_compra/", confirmacion_compra, name="confirmacion_compra"),   
+    path("confirmacion_compra/", confirmar_pedido, name="confirmacion_compra"),   
 ]
