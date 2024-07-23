@@ -1,6 +1,11 @@
 {% extends 'core/base.html' %}
 
 {% block body %}
+{% if producto_base.imagen %}
+                        <img src="{{ producto_base.imagen.url }}" alt="Imagen de {{ producto_base.nombre }}">
+                    {% else %}
+                        <p>No hay imagen disponible para este producto.</p>
+                    {% endif %}
 <h1>{{ producto_base.nombre }}</h1>
 <ul>{{ producto_base.descripcion }}</ul>
 <ul>{{ producto_base.precio }}</ul>

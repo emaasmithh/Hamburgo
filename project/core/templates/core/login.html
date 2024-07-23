@@ -6,7 +6,7 @@
         <table>
             {{ form.as_table }}
         </table>
-        <input type="hidden" name="next" value="{% url 'core:index' %}">
+        <input type="hidden" name="next" value="{% url 'producto:producto_list' %}">
         <button type="submit" class="btn btn-primary ">Iniciar Sesión</button>
         <a href="{% url 'core:index' %}" class="btn btn-secondary ">Cancelar</a>
     </form>
