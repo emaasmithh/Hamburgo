@@ -61,6 +61,7 @@ def comprar(request):
             metodo_pago = form.cleaned_data['metodo_pago']
             direccion_entrega = form.cleaned_data['direccion_entrega']
             comentarios = form.cleaned_data['comentarios']
+            metodo_entrega = form.cleaned_data['metodo_entrega']
 
             # Guardar la orden de compra en la base de datos
             orden_compra = OrdenCompra.objects.create(
@@ -69,14 +70,16 @@ def comprar(request):
                 direccion_entrega=direccion_entrega,
                 comentarios=comentarios,
                 precio_total = total_carrito_2(request),               
-                
+                metodo_entrega = metodo_entrega,
             )
         precio_total = total_carrito_2(request)
         carrito = Carrito(request)
         items_carrito = carrito.obtener_detalle_pedido()
-        detalles_pedido = f"Dirección de entrega: {direccion_entrega}\nPrecio total: $ {precio_total}\nMétodo de pago: {metodo_pago}\n"
+        detalles_pedido = f"Dirección de entrega: {direccion_entrega}\nPrecio total: $ {precio_total}\nMétodo de pago: {metodo_pago}\nMétodo de entrega: {metodo_entrega}\n"
         for item in items_carrito:
-            detalles_pedido += f"{item["nombre"]} X {item["cantidad"]} --> descripción: {item["descripcion"]}\n"
+            detalles_pedido += f"- {item["nombre"]} X {item["cantidad"]} --> descripción: {item["descripcion"]}\n"
+
+        detalles_pedido += f"Comentarios: {comentarios}"
 
         enviar_notificacion_pedido(detalles_pedido)
 

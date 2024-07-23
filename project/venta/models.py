@@ -109,6 +109,7 @@ class OrdenCompra(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # Relación con el usuario que realizó la compra
     precio_total = models.FloatField(null=True, blank=True)
     metodo_pago = models.CharField(max_length=50)
+    metodo_entrega = models.CharField(max_length=50, blank=True, null=True)
     direccion_entrega = models.TextField(blank=True)
     comentarios = models.TextField(blank=True)
     fecha_compra = models.DateTimeField(auto_now_add=True)

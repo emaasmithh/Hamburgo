@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<p>Método de pago</p>
+<p>CONFIRMACIÓN DE COMPRA</p>
 
 <form method="post">
     {% csrf_token %}
@@ -14,8 +14,13 @@
     {{ form.direccion_entrega }}
         
     <br><br>
-    <label for="id_comentarios">Comentarios:</label>
+    <label for="id_comentarios">Comentarios(Si desea quitar algún ingrediente de los productos, escríbalo aquí):</label>
     {{ form.comentarios }}
+        
+    <br><br>
+
+    <label for="id_metodo_entrega">Método de entrega:</label>
+    {{ form.metodo_entrega }}
         
     <br><br>
     <!-- Otros campos como dirección de entrega y comentario aquí -->
