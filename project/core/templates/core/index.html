@@ -1,9 +1,14 @@
 {% extends 'core/base.html' %}
 {% block body %}
-<div class="col-lg-8 text-center">
-    <h2 class="text-black mt-0">Dónde encontrarnos?</h2>
-    <hr class="divider divider-light" />
-    <p class="text-black-75 mb-4">Nos encontramos en General Rodríguez y te esperamos para disfrutar de las hamburguesas más ricas. Para delivery o take away pedí por la web o por whats app.</p>
-    <a class="btn btn-primary btn-xl" href="{% url 'producto:producto_list' %}">Hacé tu pedido</a>
-</div> 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <h2 class="text-black mt-0">Dónde encontrarnos?</h2>
+            <hr class="divider divider-light" />
+            <p class="text-black-75 mb-4">Nos encontramos en General Rodríguez y te esperamos para disfrutar de las hamburguesas más ricas. Para delivery o take away pedí por la web o por WhatsApp.</p>
+            <a class="btn btn-primary btn-xl" href="{% url 'producto:producto_list' %}">Hacé tu pedido</a>
+        </div>
+    </div>
+</div>
+
 {% endblock body %}
