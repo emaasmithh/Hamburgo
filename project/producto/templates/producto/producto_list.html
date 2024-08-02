@@ -16,10 +16,9 @@
             <div class="card h-100">
                 <div class="card-body">
                     {% if hamburguesa.imagen %}
-                        <img src="{{ hamburguesa.imagen.url }}" alt="Imagen de {{ hamburguesa.nombre }}">
-                    {% else %}
-                        <p>No hay imagen disponible para este producto.</p>
+                        <img src="{{ hamburguesa.imagen.url }}" class="card-img-top" alt="Imagen de {{ hamburguesa.nombre }}">                    
                     {% endif %}
+                    <p> </p>
                     <h5 class="card-title">{{ hamburguesa.nombre }}</h5>
                     <p class="card-text">{{ hamburguesa.descripcion }}</p>
                     <p class="card-text">Precio: ${{ hamburguesa.precio }}</p>
