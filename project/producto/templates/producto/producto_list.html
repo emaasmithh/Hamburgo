@@ -12,7 +12,7 @@
 <div class="container text-center pt-5">
     <div class="row align-items-stretch">
         {% for hamburguesa in hamburguesas %}
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <div class="card h-100">
                 <div class="card-body">
                     {% if hamburguesa.imagen %}
@@ -39,14 +39,15 @@
 <div class="container text-center pt-5">
     <div class="row align-items-stretch">
         {% for otro in otros_productos %}
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <div class="card h-100">
                 <div class="card-body">
                     {% if otro.imagen %}
-                        <img src="{{ otro.imagen.url }}" alt="Imagen de {{ otro.nombre }}">
+                        <img src="{{ otro.imagen.url }}" class="card-img-top" alt="Imagen de {{ otro.nombre }}">
                     {% else %}
                         <p>No hay imagen disponible para este producto.</p>
                     {% endif %}
+                    <p> </p>
                     <h5 class="card-title">{{ otro.nombre }}</h5>
                     <p class="card-text">{{ otro.descripcion }}</p>
                     <p class="card-text">Precio: ${{ otro.precio }}</p>
@@ -67,14 +68,15 @@
 <div class="container text-center pt-5">
     <div class="row align-items-stretch">
         {% for entrada in entradas %}
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <div class="card h-100">
                 <div class="card-body">
                     {% if entrada.imagen %}
-                        <img src="{{ entrada.imagen.url }}" alt="Imagen de {{ entrada.nombre }}">
+                        <img src="{{ entrada.imagen.url }}" class="card-img-top" alt="Imagen de {{ entrada.nombre }}">
                     {% else %}
                         <p>No hay imagen disponible para este producto.</p>
                     {% endif %}
+                    <p> </p>
                     <h5 class="card-title">{{ entrada.nombre }}</h5>
                     <p class="card-text">{{ entrada.descripcion }}</p>
                     <p class="card-text">Precio: ${{ entrada.precio }}</p>
@@ -95,14 +97,15 @@
 <div class="container text-center pt-5 pb-5">
     <div class="row align-items-stretch">
         {% for bebida in bebidas %}
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <div class="card h-100">
                 <div class="card-body">
                     {% if bebida.imagen %}
-                        <img src="{{ bebida.imagen.url }}" alt="Imagen de {{ bebida.nombre }}">
+                        <img src="{{ bebida.imagen.url }}" class="card-img-top" alt="Imagen de {{ bebida.nombre }}">
                     {% else %}
                         <p>No hay imagen disponible para este producto.</p>
                     {% endif %}
+                    <p> </p>
                     <h5 class="card-title">{{ bebida.nombre }}</h5>
                     <p class="card-text">{{ bebida.descripcion }}</p>
                     <p class="card-text">Precio: ${{ bebida.precio }}</p>

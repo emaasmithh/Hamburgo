@@ -1,34 +1,39 @@
 {% extends 'core/base.html' %}
-
+{% load custom_filters %}
 {% block body %}
+<div class="container mt-5">
+    <h1 class="display-4 mb-4">Confirmación de Compra</h1>
 
-<p>CONFIRMACIÓN DE COMPRA</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_metodo_pago">Método de Pago:</label>
+            {{ form.metodo_pago|add_class:"form-control" }}
+        </div>
 
-<form method="post">
-    {% csrf_token %}
-    <label for="id_metodo_pago">Método de Pago:</label>
-    {{ form.metodo_pago }}
-    
-    <br><br>
-    <label for="id_direccion_entrega">Dirección de Entrega:</label>
-    {{ form.direccion_entrega }}
-        
-    <br><br>
-    <label for="id_comentarios">Comentarios y horario de entrega(Si desea quitar algún ingrediente de los productos, escríbalo aquí):</label>
-    {{ form.comentarios }}
-        
-    <br><br>
+        <div class="form-group mt-3">
+            <label for="id_direccion_entrega">Dirección de Entrega:</label>
+            {{ form.direccion_entrega|add_class:"form-control" }}
+        </div>
 
-    <label for="id_metodo_entrega">Método de entrega:</label>
-    {{ form.metodo_entrega }}
-        
-    <br><br>
-    <!-- Otros campos como dirección de entrega y comentario aquí -->
+        <div class="form-group mt-3">
+            <label for="id_comentarios">Comentarios y horario de entrega (Si desea quitar algún ingrediente de los productos, escríbalo aquí):</label>
+            {{ form.comentarios|add_class:"form-control" }}
+        </div>
 
-    <input type="submit" value="Comprar">
-</form>
+        <div class="form-group mt-3">
+            <label for="id_metodo_entrega">Método de Entrega:</label>
+            {{ form.metodo_entrega|add_class:"form-control" }}
+        </div>
 
-<H1>DETALLE DE TU PEDIDO</H1>
+        <button type="submit" class="btn btn-primary mt-4">Comprar</button>
+    </form>
+
+    <div class="mt-5">
+        <h2 class="display-5">Detalle de tu Pedido</h2>
+        <!-- Aquí puedes incluir los detalles del pedido con un estilo adecuado -->
+    </div>
+</div>
 
     {% include 'venta/carrito.html' %}
 

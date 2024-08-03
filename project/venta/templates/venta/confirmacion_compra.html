@@ -1,7 +1,14 @@
 {% extends 'core/base.html' %}
 
 {% block body %}
-    <h1>La compra se realizó exitosamente!</h1>
-    <a href="{% url 'producto:producto_list' %}">VOLVER A MENÚ PRINCIPAL</a>
-    {{ metodo_pago }}
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4 text-success">¡Compra Realizada Exitosamente!</h1>
+        <p class="lead">Tu compra ha sido procesada con éxito. Gracias por tu pedido.</p>
+        
+        <div class="mt-4">
+            <a href="{% url 'producto:producto_list' %}" class="btn btn-primary">Volver al Menú Principal</a>
+        </div>
+    </div>
+</div>
 {% endblock body %}
